@@ -505,6 +505,8 @@
     text-decoration: none;
     box-shadow: 4px 4px 0 rgba(15,92,92,0.25);
     transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .contact-link:last-of-type {
@@ -532,6 +534,13 @@
     text-transform: uppercase;
     margin: 20px 0;
     position: relative;
+  }
+
+  .form-divider span {
+    background: #F2EAD3;
+    padding: 0 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .form-divider::before,
@@ -696,6 +705,16 @@
 
     .audience-grid {
       grid-template-columns: 1fr;
+    }
+
+    /* Modal Mobile Adjustments */
+    .modal-content {
+      padding: 36px 16px;
+    }
+
+    .contact-link {
+      font-size: 0.95rem;
+      padding: 12px 10px;
     }
   }
 
@@ -931,7 +950,7 @@
     <a href="https://t.me/betterlearnfromglebtgchannel" target="_blank" class="contact-link">Telegram: @betterlearnfromglebtgchannel</a>
     <a href="https://vk.com/gleb_lebedev" target="_blank" class="contact-link">ВКонтакте: @gleb_lebedev</a>
 
-    <div class="form-divider">или оставь почту</div>
+    <div class="form-divider"><span>или оставь почту</span></div>
 
     <!-- Email form -->
     <form id="contactForm" class="contact-form" novalidate>
