@@ -822,9 +822,147 @@
       display: none !important;
     }
   }
+  /* ===== PROMO BANNER ===== */
+  .promo-bar {
+    background: #7A2E2E;
+    border-bottom: 4px solid #E8A33D;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .promo-bar-inner {
+    display: flex;
+    align-items: stretch;
+    min-height: 72px;
+  }
+
+  .promo-tag {
+    background: #E8A33D;
+    color: #7A2E2E;
+    font-family: 'Alfa Slab One', serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: horizontal-tb;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-right: 4px solid #7A2E2E;
+    gap: 6px;
+  }
+
+  .promo-tag::before {
+    content: '🔥';
+    font-size: 1.1rem;
+  }
+
+  .promo-content {
+    padding: 14px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .promo-headline {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    color: #FFE082;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow:
+      0 0 6px #FFE082,
+      0 0 14px #E8A33D,
+      0 0 30px #E8A33D,
+      0 0 60px rgba(232,163,61,0.6),
+      2px 2px 0 rgba(0,0,0,0.4);
+    animation: neon-flicker 4s ease-in-out infinite;
+  }
+
+  @keyframes neon-flicker {
+    0%, 100% {
+      text-shadow:
+        0 0 6px #FFE082,
+        0 0 14px #E8A33D,
+        0 0 30px #E8A33D,
+        0 0 60px rgba(232,163,61,0.6),
+        2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 1;
+    }
+    92% {
+      text-shadow:
+        0 0 6px #FFE082,
+        0 0 14px #E8A33D,
+        0 0 30px #E8A33D,
+        0 0 60px rgba(232,163,61,0.6),
+        2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 1;
+    }
+    93% {
+      text-shadow: none;
+      opacity: 0.7;
+    }
+    94% {
+      text-shadow:
+        0 0 6px #FFE082,
+        0 0 14px #E8A33D,
+        0 0 30px #E8A33D,
+        0 0 60px rgba(232,163,61,0.6),
+        2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 1;
+    }
+    95% {
+      text-shadow: none;
+      opacity: 0.6;
+    }
+    96% {
+      text-shadow:
+        0 0 6px #FFE082,
+        0 0 14px #E8A33D,
+        0 0 30px #E8A33D,
+        0 0 60px rgba(232,163,61,0.6),
+        2px 2px 0 rgba(0,0,0,0.4);
+      opacity: 1;
+    }
+  }
+
+  .promo-sub {
+    font-size: 0.88rem;
+    color: #F2EAD3;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 640px) {
+    .promo-tag {
+      padding: 0 12px;
+      font-size: 0.6rem;
+    }
+    .promo-content {
+      padding: 12px 16px;
+    }
+    .promo-headline {
+      font-size: 1rem;
+    }
+  }
 </style>
 </head>
 <body>
+
+
+<!-- ===== PROMO BANNER ===== -->
+<div class="promo-bar">
+  <div class="container promo-bar-inner">
+    <div class="promo-tag">Акция</div>
+    <div class="promo-content">
+      <span class="promo-headline">200 ₽ / 60 минут — для первых двух учеников</span>
+      <span class="promo-sub">Первое занятие-брифинг — бесплатно. Торопитесь, места занимаются быстро.</span>
+    </div>
+  </div>
+</div>
 
 <!-- ===== HERO / BILLBOARD ===== -->
 <header class="hero">
@@ -927,8 +1065,8 @@
 <div class="cta-banner">
   <div class="container cta-content">
     <p class="cta-free">Первое занятие&#8209;брифинг — бесплатно<br><small style="font-size:0.55em;opacity:0.8;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;">(30–40 минут, без обязательств)</small></p>
-    <p class="cta-price">Мой гонорар: 600 ₽ / 60 минут</p>
-    <a href="#" class="cta-button" id="ctaBtn">Связаться с&nbsp;Глебом</a>
+    <p class="cta-price">Мой гонорар: 200 ₽ / 60 минут<br><small style="font-size:0.65em;opacity:0.8;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;">🔥 Специальная цена для первых двух учеников</small></p>
+    <button type="button" class="cta-button" id="ctaBtn">Связаться с&nbsp;Глебом</button>
   </div>
 </div>
 
@@ -988,21 +1126,20 @@
   const modal = document.getElementById('contactModal');
   const closeBtn = document.getElementById('closeModal');
 
-  function openModal() {
+  function showModal() {
     modal.classList.add('active');
   }
 
-  function closeModal() {
+  function hideModal() {
     modal.classList.remove('active');
   }
 
-  ctaBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openModal();
+  ctaBtn.addEventListener('click', () => {
+    showModal();
   });
-  closeBtn.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', hideModal);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal) hideModal();
   });
 
   /* === FORMSPREE AJAX SUBMISSION === */
@@ -1056,7 +1193,7 @@
   if (prefersReducedMotion) return;
 
   /* === SCROLL REVEAL === */
-  const revealSections = document.querySelectorAll('section, .cta-banner, footer');
+  const revealSections = document.querySelectorAll('section, footer');
   revealSections.forEach(el => {
     if (!el.classList.contains('hero')) el.classList.add('reveal');
   });
